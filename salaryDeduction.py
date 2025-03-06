@@ -1,19 +1,37 @@
-def calculate_net_salary(salary):
-    sss_deduction = 1200
-    philhealth_deduction = (salary * 0.05) / 2
-    pagibig_deduction = 100
-    tax_deduction = 1875  # Assuming fixed value for simplicity
+def calculate_sss_deduction():
+    return 1200
 
-    total_deductions = sss_deduction + philhealth_deduction + pagibig_deduction + tax_deduction
-    net_salary = salary - total_deductions
+def calculate_philhealth_deduction(salary):
+    return (salary * 0.05) / 2
+
+def calculate_pagibig_deduction():
+    return 100
+
+def calculate_tax_deduction():
+    return 1875
+
+def calculate_total_deductions(salary):
+    sss = calculate_sss_deduction()
+    philhealth = calculate_philhealth_deduction(salary)
+    pagibig = calculate_pagibig_deduction()
+    tax = calculate_tax_deduction()
+    return sss + philhealth + pagibig + tax
+
+def calculate_net_salary(salary):
+    total_deductions = calculate_total_deductions(salary)
+    return salary - total_deductions
+
+def main():
+    salary = float(input("Enter your monthly salary: "))
+    net_salary = calculate_net_salary(salary)
 
     print("Gross Salary:", salary)
-    print("SSS Deduction:", sss_deduction)
-    print("PhilHealth Deduction:", philhealth_deduction)
-    print("Pag-IBIG Deduction:", pagibig_deduction)
-    print("Tax Deduction:", tax_deduction)
-    print("Total Deductions:", total_deductions)
+    print("SSS Deduction:", calculate_sss_deduction())
+    print("PhilHealth Deduction:", calculate_philhealth_deduction(salary))
+    print("Pag-IBIG Deduction:", calculate_pagibig_deduction())
+    print("Tax Deduction:", calculate_tax_deduction())
+    print("Total Deductions:", calculate_total_deductions(salary))
     print("Net Salary:", net_salary)
 
-salary = float(input("Enter your monthly salary: "))
-calculate_net_salary(salary)
+if __name__ == "__main__":
+    main()
