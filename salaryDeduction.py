@@ -21,8 +21,19 @@ def calculate_net_salary(salary):
     total_deductions = calculate_total_deductions(salary)
     return salary - total_deductions
 
+def get_valid_salary():
+    while True:
+        try:
+            salary = float(input("Enter your monthly salary: "))
+            if salary < 0:
+                print("Salary cannot be negative. Please try again.")
+            else:
+                return salary
+        except ValueError:
+            print("Invalid input. Please enter a numeric value.")
+
 def main():
-    salary = float(input("Enter your monthly salary: "))
+    salary = get_valid_salary()
     net_salary = calculate_net_salary(salary)
 
     print("Gross Salary:", salary)
